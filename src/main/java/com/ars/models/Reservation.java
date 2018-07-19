@@ -15,12 +15,12 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "id" }))
-public class Reservations {
+@Table(name="reservation_details", uniqueConstraints = @UniqueConstraint(columnNames = { "id" }))
+public class Reservation {
 
 	@Id
 	@NotNull
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@NotNull
@@ -128,25 +128,25 @@ public class Reservations {
 	/**
 	 * @return the flightId
 	 */
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "flightId")
-	public Flight getFlightId() {
-		return flightId;
-	}
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name = "flightId")
+//	public Flight getFlightId() {
+//		return flightId;
+//	}
 
 	/**
 	 * @param flightId
 	 *            the flightId to set
 	 */
-	public void setFlightId(Flight flightId) {
-		this.flightId = flightId;
-	}
+//	public void setFlightId(Flight flightId) {
+//		this.flightId = flightId;
+//	}
 
 	@NotNull
 	private Integer available_seats;
 
-	@NotNull
-
-	private Flight flightId;
+//	@NotNull
+//
+//	private Flight flightId;
 
 }

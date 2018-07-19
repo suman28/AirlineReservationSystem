@@ -2,18 +2,24 @@ package com.ars.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
+@Table(name = "user_details", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
 public class User {
-	
-	private static final int NAMELENGTH = 50;
-	
+
+	@Id
 	@NotNull
-	@Column(name = "username" , nullable = false, length= NAMELENGTH)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
+
+	@NotNull
+	@Column(name = "username")
 	private String username;
 	@NotNull
 	private String password;
@@ -25,109 +31,110 @@ public class User {
 	private String email;
 	@NotNull
 	private Integer phoneNum;
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the username
+	 */
 	public String getUsername() {
 		return username;
 	}
+
+	/**
+	 * @param username
+	 *            the username to set
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	/**
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
+
+	/**
+	 * @param password
+	 *            the password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
+
+	/**
+	 * @param name
+	 *            the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	/**
+	 * @return the city
+	 */
 	public String getCity() {
 		return city;
 	}
+
+	/**
+	 * @param city
+	 *            the city to set
+	 */
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	/**
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
+
+	/**
+	 * @param email
+	 *            the email to set
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	/**
+	 * @return the phoneNum
+	 */
 	public Integer getPhoneNum() {
 		return phoneNum;
 	}
+
+	/**
+	 * @param phoneNum
+	 *            the phoneNum to set
+	 */
 	public void setPhoneNum(Integer phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((phoneNum == null) ? 0 : phoneNum.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phoneNum == null) {
-			if (other.phoneNum != null)
-				return false;
-		} else if (!phoneNum.equals(other.phoneNum))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", name=" + name + ", city=" + city
-				+ ", email=" + email + ", phoneNum=" + phoneNum + "]";
-	}
-	
-	
+
 }
