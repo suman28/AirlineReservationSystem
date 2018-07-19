@@ -25,7 +25,7 @@ import com.ars.service.UserService;
 
 
 @RestController
-@RequestMapping(path = "/flights")
+@RequestMapping(path = "/api/flights")
 @CrossOrigin
 public class FlightController {
 	
@@ -50,25 +50,26 @@ public class FlightController {
 	}
     
     /*@RequestMapping(value="/{flightId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getUser(@PathVariable(required = true) String username) {
+	public ResponseEntity<?> getFlight(@PathVariable(required = true) Long flightId) {
     	User user = null;
 		try {
-			user = userService.getUser(username);
+			user = flightService.getFlight(flightId);
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
+	}*/
     
-    @RequestMapping(value="/createUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> createUser(@RequestBody User user) {
+    @RequestMapping(value="/addFlight", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> createUser(@RequestBody Flight flight) {
+    	Flight flightInfo = null;
 		try {
-			user = userService.createUser(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			flightInfo = flightService.addFlight(flight);
+			return new ResponseEntity<>(flightInfo, HttpStatus.OK);
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}*/
+	}
 
 }

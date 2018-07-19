@@ -9,13 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="reservation_details", uniqueConstraints = @UniqueConstraint(columnNames = { "id" }))
+@Table(name = "reservation_details", uniqueConstraints = @UniqueConstraint(columnNames = { "id" }))
 public class Reservation {
 
 	@Id
@@ -32,22 +33,37 @@ public class Reservation {
 	@NotNull
 	private String source;
 
-	@NotNull
-	private String destination;
-
 	/**
-	 * @return the id
+	 * @return the flight
 	 */
-	public Long getId() {
-		return id;
+	public Flight getFlight() {
+		return flight;
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param flight
+	 *            the flight to set
 	 */
-	public void setId(Long id) {
-		this.id = id;
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	@NotNull
+	private String destination;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "flight_id")
+	private Flight flight;
+
+	@NotNull
+	private Integer available_seats;
+
+	/**
+	 * @return the available_seats
+	 */
+	public Integer getAvailable_seats() {
+		return available_seats;
 	}
 
 	/**
@@ -58,41 +74,10 @@ public class Reservation {
 	}
 
 	/**
-	 * @param departure_date
-	 *            the departure_date to set
-	 */
-	public void setDeparture_date(Date departure_date) {
-		this.departure_date = departure_date;
-	}
-
-	/**
 	 * @return the departure_time
 	 */
 	public Date getDeparture_time() {
 		return departure_time;
-	}
-
-	/**
-	 * @param departure_time
-	 *            the departure_time to set
-	 */
-	public void setDeparture_time(Date departure_time) {
-		this.departure_time = departure_time;
-	}
-
-	/**
-	 * @return the source
-	 */
-	public String getSource() {
-		return source;
-	}
-
-	/**
-	 * @param source
-	 *            the source to set
-	 */
-	public void setSource(String source) {
-		this.source = source;
 	}
 
 	/**
@@ -103,18 +88,17 @@ public class Reservation {
 	}
 
 	/**
-	 * @param destination
-	 *            the destination to set
+	 * @return the id
 	 */
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public Long getId() {
+		return id;
 	}
 
 	/**
-	 * @return the available_seats
+	 * @return the source
 	 */
-	public Integer getAvailable_seats() {
-		return available_seats;
+	public String getSource() {
+		return source;
 	}
 
 	/**
@@ -126,27 +110,43 @@ public class Reservation {
 	}
 
 	/**
-	 * @return the flightId
+	 * @param departure_date
+	 *            the departure_date to set
 	 */
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@JoinColumn(name = "flightId")
-//	public Flight getFlightId() {
-//		return flightId;
-//	}
+	public void setDeparture_date(Date departure_date) {
+		this.departure_date = departure_date;
+	}
 
 	/**
-	 * @param flightId
-	 *            the flightId to set
+	 * @param departure_time
+	 *            the departure_time to set
 	 */
-//	public void setFlightId(Flight flightId) {
-//		this.flightId = flightId;
-//	}
+	public void setDeparture_time(Date departure_time) {
+		this.departure_time = departure_time;
+	}
 
-	@NotNull
-	private Integer available_seats;
+	/**
+	 * @param destination
+	 *            the destination to set
+	 */
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
 
-//	@NotNull
-//
-//	private Flight flightId;
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param source
+	 *            the source to set
+	 */
+	public void setSource(String source) {
+		this.source = source;
+	}
 
 }

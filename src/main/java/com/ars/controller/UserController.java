@@ -22,7 +22,7 @@ import com.ars.service.UserService;
 
 
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping(path = "/api/users")
 @CrossOrigin
 public class UserController {
 	

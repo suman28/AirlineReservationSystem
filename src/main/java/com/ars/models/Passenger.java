@@ -1,21 +1,25 @@
 package com.ars.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "passenger_details", uniqueConstraints = @UniqueConstraint(columnNames = { "passengerId" }))
+@Table(name = "passenger_details", uniqueConstraints = @UniqueConstraint(columnNames = { "passenger_id" }))
 public class Passenger {
 
 	@Id
 	@NotNull
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long passengerId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="passenger_id")
+	private Long id;
 	
 	@NotNull
 	private String passengerName;
@@ -24,17 +28,38 @@ public class Passenger {
 	private Integer passengerAge;
 	
 	/**
+	 * @return the ticket
+	 */
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	/**
+	 * @param ticket the ticket to set
+	 */
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "pnr")
+	private Ticket ticket;
+	
+	
+	
+	/**
 	 * @return the passengerId
 	 */
-	public Long getPassengerId() {
-		return passengerId;
+	public Long getId() {
+		return id;
 	}
 
 	/**
 	 * @param passengerId the passengerId to set
 	 */
-	public void setPassengerId(Long passengerId) {
-		this.passengerId = passengerId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**

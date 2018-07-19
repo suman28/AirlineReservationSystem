@@ -14,8 +14,14 @@ public class FlightService implements IFlightService {
 	@Autowired
 	FlightRepository flightRepository;
 
+	@Override
 	public Page<Flight> getFlights(Pageable page) {
 		return flightRepository.findAll(page);
+	}
+
+	@Override
+	public Flight addFlight(Flight flight) {
+		return flightRepository.saveAndFlush(flight);
 	}
 
 }

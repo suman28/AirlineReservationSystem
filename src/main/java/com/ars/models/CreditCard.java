@@ -1,5 +1,6 @@
 package com.ars.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,13 +10,14 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "cc_details", uniqueConstraints = @UniqueConstraint(columnNames = { "cardNumber" }))
+@Table(name = "cc_details", uniqueConstraints = @UniqueConstraint(columnNames = { "card_num" }))
 public class CreditCard {
 	
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long cardNumber;
+	@Column(name="card_num")
+	private Long id;
 	
 	@NotNull
 	private String cardHolderName;
@@ -38,15 +40,15 @@ public class CreditCard {
 	/**
 	 * @return the cardNumber
 	 */
-	public Long getCardNumber() {
-		return cardNumber;
+	public Long getId() {
+		return id;
 	}
 
 	/**
 	 * @param cardNumber the cardNumber to set
 	 */
-	public void setCardNumber(Long cardNumber) {
-		this.cardNumber = cardNumber;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**

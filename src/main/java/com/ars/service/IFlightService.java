@@ -9,4 +9,6 @@ public interface IFlightService {
 	
 	Page<Flight> getFlights(Pageable page);
 	
+	Flight addFlight(Flight flight);
+	
 }

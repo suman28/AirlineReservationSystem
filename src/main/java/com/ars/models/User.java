@@ -10,7 +10,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user_details", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
+@Table(name = "user_details", uniqueConstraints = @UniqueConstraint(columnNames = { "user_name" }))
 public class User {
 
 	@Id
@@ -19,7 +19,7 @@ public class User {
 	private Long id;
 
 	@NotNull
-	@Column(name = "username")
+	@Column(name = "user_name")
 	private String username;
 	@NotNull
 	private String password;

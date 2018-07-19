@@ -1,5 +1,6 @@
 package com.ars.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,30 +10,37 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="flight_details", uniqueConstraints = @UniqueConstraint(columnNames = { "flightId" }))
+@Table(name="flight_details", uniqueConstraints = @UniqueConstraint(columnNames = { "flight_id" }))
 public class Flight {
 
-	@Id
+	
 	@NotNull
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long flightId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="flight_id")
+	private Long id;
+	
+	@NotNull
 	private String source;
+	
+	@NotNull
 	private String destination;
 	private Double fare;
 
 	/**
 	 * @return the flightId
 	 */
-	public Long getFlightId() {
-		return flightId;
+	
+	public Long getId() {
+		return id;
 	}
 
 	/**
 	 * @param flightId
 	 *            the flightId to set
 	 */
-	public void setFlightId(Long flightId) {
-		this.flightId = flightId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**

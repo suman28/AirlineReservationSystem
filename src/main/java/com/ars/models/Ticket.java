@@ -2,10 +2,13 @@ package com.ars.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -16,8 +19,9 @@ public class Ticket {
 
 	@Id
 	@NotNull
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long pnr;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="pnr")
+	private Long id;
 	
 	@NotNull
 	private Date bookingDate;
@@ -30,19 +34,57 @@ public class Ticket {
 	
 	@NotNull
 	private Long totalFare;
+	
+	@NotNull
+	@ManyToOne
+    @JoinColumn(name = "flight_id")
+	private Flight flight;
+	
+	@NotNull
+	@ManyToOne
+    @JoinColumn(name = "user_name")
+	private User user;
+
+	/**
+	 * @return the flight
+	 */
+	public Flight getFlight() {
+		return flight;
+	}
+
+	/**
+	 * @param flight the flight to set
+	 */
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	/**
 	 * @return the pnr
 	 */
-	public Long getPnr() {
-		return pnr;
+	public Long getId() {
+		return id;
 	}
 
 	/**
 	 * @param pnr the pnr to set
 	 */
-	public void setPnr(Long pnr) {
-		this.pnr = pnr;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**
