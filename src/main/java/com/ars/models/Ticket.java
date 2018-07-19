@@ -42,7 +42,7 @@ public class Ticket {
 	
 	@NotNull
 	@ManyToOne
-    @JoinColumn(name = "user_name")
+    @JoinColumn(name = "username")
 	private User user;
 
 	/**

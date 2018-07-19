@@ -107,8 +107,4 @@ public class Passenger {
 	@NotNull
 	private String passengerGender;
 	
-	//TODO
-	//Add PNR
-	
-	
 }
